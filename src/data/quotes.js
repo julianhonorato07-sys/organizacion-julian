@@ -1,0 +1,23 @@
+// Frases motivadoras para el estudio
+export const QUOTES = [
+  'El éxito es la suma de pequeños esfuerzos repetidos día tras día.',
+  'No tenés que ser el mejor, solo mejor que ayer.',
+  'Cada parcial aprobado es un paso menos hacia el título de ingeniero.',
+  'La disciplina le gana al talento cuando el talento no se disciplina.',
+  'Estudiá hoy lo que tu yo del futuro te va a agradecer.',
+  'Los grandes logros requieren tiempo: la tesis también se escribe de a una página.',
+  'El cansancio es temporal, el título es para siempre.',
+  'No cuentes las horas que estudiás, hacé que las horas cuenten.',
+  'Un 4 a tiempo vale más que un 10 imaginario: avanzá.',
+  'La constancia convierte lo difícil en costumbre y lo imposible en logro.',
+  'Hoy es un buen día para tachar algo de la lista.',
+  'El mejor momento para empezar fue ayer; el segundo mejor es ahora.',
+  'Pensá en lo lejos que llegaste, no solo en lo que falta.',
+  'Ingeniería no es saber todo, es no rendirse hasta resolverlo.',
+  'Cada bloque del cronograma que cumplís es una promesa que te hacés a vos mismo.',
+  'El esfuerzo de hoy es la tranquilidad de la semana de finales.',
+  'Descansar también es parte del plan: recargá y volvé con todo.',
+  'No estudies hasta que te salga bien, estudiá hasta que no te salga mal.',
+  'Sos más capaz de lo que tu peor día te hace creer.',
+  'Paso a paso: primero el parcial, después el final, al final el título.',
+]
