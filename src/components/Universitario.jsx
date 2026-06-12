@@ -13,15 +13,15 @@ export default function Universitario() {
 
   return (
     <div>
-      <div className="flex gap-1 border-b border-slate-300 mb-4">
+      <div className="flex gap-2 mb-4">
         {TABS.map(({ id, label, icon: Icon }) => (
           <button
             key={id}
             onClick={() => setTab(id)}
-            className={`flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-t-lg border border-b-0 transition-colors ${
+            className={`font-tech flex items-center gap-2 px-4 py-2 text-sm font-bold uppercase tracking-wide rounded-lg border transition-all ${
               tab === id
-                ? 'bg-white border-slate-300 text-slate-900 -mb-px'
-                : 'bg-transparent border-transparent text-slate-500 hover:text-slate-800'
+                ? 'bg-cyan-500/10 border-cyan-400/40 text-cyan-300'
+                : 'border-slate-700/60 text-slate-500 hover:text-slate-300 hover:border-slate-500'
             }`}
           >
             <Icon size={16} />

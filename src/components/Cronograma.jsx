@@ -64,22 +64,26 @@ export default function Cronograma() {
   }
 
   return (
-    <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-4">
+    <div className="glass rounded-2xl p-4">
       <div className="flex flex-wrap items-center gap-3 mb-4">
         {/* Toggle teórico / práctico */}
-        <div className="flex rounded-lg overflow-hidden border border-slate-300">
+        <div className="flex rounded-lg overflow-hidden border border-slate-700/80">
           <button
             onClick={() => setMode('teorico')}
-            className={`flex items-center gap-2 px-4 py-2 text-sm font-semibold transition-colors ${
-              isTeorico ? 'bg-slate-800 text-white' : 'bg-white text-slate-600 hover:bg-slate-100'
+            className={`font-tech flex items-center gap-2 px-4 py-2 text-sm font-bold uppercase tracking-wide transition-all ${
+              isTeorico
+                ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white'
+                : 'bg-transparent text-slate-400 hover:bg-white/5'
             }`}
           >
             <BookOpen size={15} /> Teórico
           </button>
           <button
             onClick={() => setMode('practico')}
-            className={`flex items-center gap-2 px-4 py-2 text-sm font-semibold transition-colors ${
-              !isTeorico ? 'bg-emerald-600 text-white' : 'bg-white text-slate-600 hover:bg-slate-100'
+            className={`font-tech flex items-center gap-2 px-4 py-2 text-sm font-bold uppercase tracking-wide transition-all ${
+              !isTeorico
+                ? 'bg-gradient-to-r from-emerald-500 to-teal-600 text-white'
+                : 'bg-transparent text-slate-400 hover:bg-white/5'
             }`}
           >
             <CalendarCheck size={15} /> Práctico (semana actual)
@@ -89,13 +93,13 @@ export default function Cronograma() {
         {!isTeorico && (
           <button
             onClick={resetPractico}
-            className="flex items-center gap-1.5 px-3 py-2 text-xs font-semibold text-slate-600 border border-slate-300 rounded-lg hover:bg-slate-100"
+            className="flex items-center gap-1.5 px-3 py-2 text-xs font-semibold text-slate-400 border border-slate-700/80 rounded-lg hover:border-cyan-400/40 hover:text-cyan-300 transition-colors"
           >
             <RotateCcw size={14} /> Reiniciar semana desde el teórico
           </button>
         )}
 
-        <span className="text-xs text-slate-400 ml-auto">
+        <span className="text-xs text-slate-500 ml-auto">
           Clic en una celda para editar · arrastrá un bloque para moverlo
         </span>
       </div>
@@ -104,21 +108,21 @@ export default function Cronograma() {
         <table className="w-full border-collapse min-w-[900px] table-fixed">
           <thead>
             <tr>
-              <th className="w-20 border border-slate-300 bg-white"></th>
+              <th className="w-20 border border-[#1c2a4a] bg-transparent"></th>
               <th
                 colSpan={DAYS.length}
-                className="border border-slate-300 bg-[#c27ba0] text-white text-sm font-bold py-1.5 tracking-wide"
+                className="font-display border border-[#1c2a4a] bg-gradient-to-r from-violet-600/70 via-blue-600/70 to-cyan-500/70 text-white text-sm font-bold py-2 tracking-widest uppercase"
               >
-                SEMANA {week} · {range}
+                Semana {week} · {range}
                 {!isTeorico && ' · (semana en curso)'}
               </th>
             </tr>
             <tr>
-              <th className="w-20 border border-slate-300 bg-[#c27ba0] text-white text-xs py-2 px-1">
-                HORAS / DÍAS
+              <th className="font-tech w-20 border border-[#1c2a4a] bg-[#0d1630] text-cyan-200/80 text-xs py-2 px-1 uppercase tracking-wide">
+                Horas / Días
               </th>
               {DAYS.map(({ key, label }) => (
-                <th key={key} className="border border-slate-300 bg-[#c27ba0] text-white text-sm py-2">
+                <th key={key} className="font-tech border border-[#1c2a4a] bg-[#0d1630] text-cyan-200/90 text-sm font-bold py-2">
                   {label}
                 </th>
               ))}
@@ -127,7 +131,7 @@ export default function Cronograma() {
           <tbody>
             {HOURS.map((hour) => (
               <tr key={hour}>
-                <td className="border border-slate-300 bg-slate-50 text-center text-xs font-bold text-slate-600 py-1">
+                <td className="border border-[#1c2a4a] bg-[#0b1226] text-center text-xs font-bold text-slate-500 py-1">
                   {hour}
                 </td>
                 {DAYS.map(({ key: day }) => {
@@ -141,7 +145,7 @@ export default function Cronograma() {
                       onDragStart={() => setDragging({ day, hour })}
                       onDragOver={(e) => e.preventDefault()}
                       onDrop={() => handleDrop(day, hour)}
-                      className="border border-slate-300 text-center text-[11px] font-semibold leading-tight px-1 py-0.5 h-7 cursor-pointer hover:outline hover:outline-2 hover:outline-blue-400 select-none overflow-hidden"
+                      className="border border-[#1c2a4a] text-center text-[11px] font-semibold leading-tight px-1 py-0.5 h-7 cursor-pointer hover:outline hover:outline-2 hover:outline-cyan-400 select-none overflow-hidden"
                       style={cell ? { backgroundColor: color.bg, color: color.text } : undefined}
                       title={cell?.text || ''}
                     >
@@ -180,31 +184,31 @@ function CellEditor({ cell, dayLabel, hour, onSave, onDelete, onClose }) {
   const [color, setColor] = useState(cell?.color ?? 'work')
 
   return (
-    <div className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center p-4" onClick={onClose}>
+    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={onClose}>
       <div
-        className="bg-white rounded-xl shadow-xl p-5 w-full max-w-sm"
+        className="glass rounded-2xl p-5 w-full max-w-sm"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between mb-3">
-          <h3 className="font-bold text-slate-800">
+          <h3 className="font-tech font-bold text-cyan-200 uppercase tracking-wide">
             {dayLabel} — {hour}:00
           </h3>
-          <button onClick={onClose} className="text-slate-400 hover:text-slate-700">
+          <button onClick={onClose} className="text-slate-500 hover:text-slate-200">
             <X size={18} />
           </button>
         </div>
 
-        <label className="block text-xs font-semibold text-slate-500 mb-1">Texto del bloque</label>
+        <label className="block text-xs font-semibold text-slate-400 mb-1">Texto del bloque</label>
         <input
           autoFocus
           value={text}
           onChange={(e) => setText(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && onSave({ text, color })}
           placeholder="Ej: Epro 4D1 - 17:20"
-          className="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm mb-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className="w-full bg-[#0b1226] border border-[#27365c] rounded-lg px-3 py-2 text-sm text-slate-100 mb-3 focus:outline-none focus:border-cyan-400"
         />
 
-        <label className="block text-xs font-semibold text-slate-500 mb-1">Color</label>
+        <label className="block text-xs font-semibold text-slate-400 mb-1">Color</label>
         <div className="grid grid-cols-8 gap-1.5 mb-4">
           {Object.entries(COLORS).map(([key, c]) => (
             <button
@@ -212,7 +216,7 @@ function CellEditor({ cell, dayLabel, hour, onSave, onDelete, onClose }) {
               title={c.label}
               onClick={() => setColor(key)}
               className={`h-7 rounded border ${
-                color === key ? 'ring-2 ring-blue-500 border-blue-500' : 'border-slate-300'
+                color === key ? 'ring-2 ring-cyan-400 border-cyan-400' : 'border-[#27365c]'
               }`}
               style={{ backgroundColor: c.bg }}
             />
@@ -222,14 +226,14 @@ function CellEditor({ cell, dayLabel, hour, onSave, onDelete, onClose }) {
         <div className="flex gap-2">
           <button
             onClick={() => onSave({ text, color })}
-            className="flex-1 bg-slate-800 text-white rounded-lg py-2 text-sm font-semibold hover:bg-slate-700"
+            className="flex-1 bg-gradient-to-r from-cyan-500 to-violet-600 text-white rounded-lg py-2 text-sm font-bold hover:opacity-90"
           >
             Guardar
           </button>
           {cell && (
             <button
               onClick={onDelete}
-              className="flex items-center gap-1.5 px-3 py-2 text-sm font-semibold text-red-600 border border-red-200 rounded-lg hover:bg-red-50"
+              className="flex items-center gap-1.5 px-3 py-2 text-sm font-semibold text-red-400 border border-red-500/30 rounded-lg hover:bg-red-500/10"
             >
               <Trash2 size={15} /> Borrar
             </button>

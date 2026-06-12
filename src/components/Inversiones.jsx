@@ -27,11 +27,11 @@ import {
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, ArcElement, Tooltip, Legend, Filler)
 
-// Tema oscuro estilo GitHub, heredado de la app original de finanzas
+// Tarjetas integradas al tema futurista global
 const T = {
-  card: 'bg-[#161b22] border border-[#30363d] rounded-xl',
-  sub: 'text-[#8b949e]',
-  cardTitle: 'text-xs font-semibold text-[#8b949e] uppercase tracking-wider',
+  card: 'glass rounded-2xl',
+  sub: 'text-slate-500',
+  cardTitle: 'font-tech text-xs font-bold text-cyan-200/80 uppercase tracking-wider',
 }
 
 const TIME_FILTERS = [
@@ -124,7 +124,7 @@ export default function Inversiones() {
   const allocationTotal = allocation.values.reduce((a, b) => a + b, 0)
 
   return (
-    <div className="bg-[#0d1117] rounded-xl p-4 text-[#e6edf3] -mx-1">
+    <div className="text-slate-100">
       {/* Encabezado del portfolio */}
       <div className={`${T.card} p-6 mb-4`}>
         <div className="flex items-start justify-between flex-wrap gap-3">

@@ -2,7 +2,7 @@
 // Paleta de colores (replica la hoja de cálculo original)
 // ---------------------------------------------------------------
 export const COLORS = {
-  none:    { bg: '#ffffff', text: '#1e293b', label: 'Sin color' },
+  none:    { bg: '#1e293b', text: '#e2e8f0', label: 'Neutro (sin color)' },
   wake:    { bg: '#fde047', text: '#1e293b', label: 'Amarillo (Despertarse)' },
   work:    { bg: '#d9ead3', text: '#1e293b', label: 'Verde claro (Trabajo)' },
   epro:    { bg: '#ffe599', text: '#1e293b', label: 'Crema (Epro / Eval. de proyectos)' },
