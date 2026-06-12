@@ -89,20 +89,20 @@ export default function Gantt() {
   return (
     <div className="glass rounded-2xl p-4">
       <div className="flex flex-wrap items-center gap-3 mb-4">
-        <h2 className="font-semibold text-slate-100">Materias / Objetivos</h2>
+        <h2 className="font-semibold text-zinc-100">Materias / Objetivos</h2>
         <button
           onClick={addSubject}
-          className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-slate-400 border border-slate-700/80 rounded-lg hover:border-cyan-400/40 hover:text-cyan-300 transition-colors"
+          className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-zinc-500 border border-[#2a2a2e] rounded-full hover:text-white hover:border-zinc-500 transition-colors"
         >
-          <Plus size={14} /> Materia
+          <Plus size={13} /> Materia
         </button>
         <button
           onClick={addDate}
-          className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-slate-400 border border-slate-700/80 rounded-lg hover:border-cyan-400/40 hover:text-cyan-300 transition-colors"
+          className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-zinc-500 border border-[#2a2a2e] rounded-full hover:text-white hover:border-zinc-500 transition-colors"
         >
-          <Plus size={14} /> Fecha
+          <Plus size={13} /> Fecha
         </button>
-        <span className="text-xs text-slate-500 ml-auto">
+        <span className="text-xs text-zinc-600 ml-auto">
           Clic en una celda para marcar P / TP / RU / EXP · pasá el mouse sobre una fecha para eliminarla
         </span>
       </div>
@@ -111,17 +111,17 @@ export default function Gantt() {
         <table className="border-collapse text-sm">
           <thead className="sticky top-0 z-20">
             <tr>
-              <th className="sticky left-0 z-30 bg-[#0d1630] text-cyan-200/90 border border-[#1c2a4a] px-3 py-2 min-w-[230px] text-left text-sm font-semibold">
+              <th className="sticky left-0 z-30 bg-[#161618] text-zinc-300 border border-[#222226] px-3 py-2 min-w-[230px] text-left text-sm font-semibold">
                 Materias / Objetivos
               </th>
-              <th className="sticky left-[230px] z-30 bg-[#0d1630] text-cyan-200/90 border border-[#1c2a4a] px-2 py-2 min-w-[90px] text-sm font-semibold">
+              <th className="sticky left-[230px] z-30 bg-[#161618] text-zinc-300 border border-[#222226] px-2 py-2 min-w-[90px] text-sm font-semibold">
                 Notas
               </th>
               {dates.map((d) => (
                 <th
                   key={d}
-                  className={`relative border border-[#1c2a4a] px-1 py-2 min-w-[48px] text-xs font-bold group/fecha ${
-                    isSunday(d) ? 'bg-rose-600/80 text-white' : 'bg-[#0d1630] text-slate-400'
+                  className={`relative border border-[#222226] px-1 py-2 min-w-[48px] text-xs font-bold group/fecha ${
+                    isSunday(d) ? 'bg-[#2a1215] text-red-400' : 'bg-[#161618] text-zinc-500'
                   }`}
                 >
                   {d}
@@ -130,8 +130,8 @@ export default function Gantt() {
                     title={`Eliminar columna ${d}`}
                     className={`absolute top-0 right-0 p-0.5 rounded-bl opacity-0 group-hover/fecha:opacity-100 ${
                       isSunday(d)
-                        ? 'text-white hover:bg-rose-700'
-                        : 'text-slate-500 hover:text-red-400 hover:bg-white/5'
+                        ? 'text-red-400 hover:bg-red-500/20'
+                        : 'text-zinc-500 hover:text-red-400 hover:bg-white/5'
                     }`}
                   >
                     <X size={11} />
@@ -146,7 +146,7 @@ export default function Gantt() {
               return (
                 <tr key={subject.id} className="group">
                   <td
-                    className="sticky left-0 z-10 border border-[#1c2a4a] px-3 py-1.5 font-bold text-xs min-w-[230px]"
+                    className="sticky left-0 z-10 border border-[#222226] px-3 py-1.5 font-bold text-xs min-w-[230px]"
                     style={{ backgroundColor: subjectColor.bg, color: subjectColor.text }}
                   >
                     <div className="flex items-center justify-between gap-1">
@@ -160,14 +160,14 @@ export default function Gantt() {
                       </button>
                     </div>
                   </td>
-                  <td className="sticky left-[230px] z-10 border border-[#1c2a4a] bg-[#0b1226] p-0 min-w-[90px]">
+                  <td className="sticky left-[230px] z-10 border border-[#222226] bg-[#121214] p-0 min-w-[90px]">
                     <input
                       value={notas[subject.id] ?? ''}
                       onChange={(e) =>
                         setNotas((prev) => ({ ...prev, [subject.id]: e.target.value }))
                       }
                       placeholder="—"
-                      className="w-full h-full bg-transparent px-2 py-1.5 text-center text-xs font-semibold text-slate-100 focus:outline-none focus:bg-cyan-500/10"
+                      className="w-full h-full bg-transparent px-2 py-1.5 text-center text-xs font-semibold text-zinc-100 focus:outline-none focus:bg-white/5"
                     />
                   </td>
                   {dates.map((date) => {
@@ -177,7 +177,7 @@ export default function Gantt() {
                       <td
                         key={date}
                         onClick={() => setEditing({ subjectId: subject.id, date })}
-                        className="border border-[#1c2a4a] text-center text-xs font-bold cursor-pointer h-8 hover:outline hover:outline-2 hover:outline-cyan-400"
+                        className="border border-[#222226] text-center text-xs font-bold cursor-pointer h-8 hover:outline hover:outline-2 hover:outline-zinc-400"
                         style={
                           mark
                             ? { backgroundColor: markColor.bg, color: markColor.text }
@@ -213,30 +213,30 @@ function MarkEditor({ mark, subject, date, onSave, onClose }) {
   const [color, setColor] = useState(mark?.color ?? subject?.color ?? 'red')
 
   return (
-    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={onClose}>
+    <div className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4" onClick={onClose}>
       <div
         className="glass rounded-2xl p-5 w-full max-w-sm"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between mb-3">
-          <h3 className="font-semibold text-slate-100 text-sm">
+          <h3 className="font-semibold text-zinc-100 text-sm">
             {subject?.name} — {date}
           </h3>
-          <button onClick={onClose} className="text-slate-500 hover:text-slate-200">
+          <button onClick={onClose} className="text-zinc-600 hover:text-white">
             <X size={18} />
           </button>
         </div>
 
-        <label className="block text-xs font-semibold text-slate-400 mb-1">Etiqueta</label>
+        <label className="block text-xs font-medium text-zinc-500 mb-1">Etiqueta</label>
         <div className="flex flex-wrap gap-1.5 mb-2">
           {MARK_PRESETS.map((preset) => (
             <button
               key={preset}
               onClick={() => setLabel(preset)}
-              className={`px-2.5 py-1 rounded text-xs font-bold border transition-colors ${
+              className={`px-2.5 py-1 rounded-full text-xs font-bold border transition-colors ${
                 label === preset
-                  ? 'bg-gradient-to-r from-cyan-500 to-violet-600 text-white border-transparent'
-                  : 'border-[#27365c] text-slate-400 hover:text-cyan-300 hover:border-cyan-400/40'
+                  ? 'bg-white text-black border-white'
+                  : 'border-[#2a2a2e] text-zinc-500 hover:text-white hover:border-zinc-500'
               }`}
             >
               {preset}
@@ -248,18 +248,18 @@ function MarkEditor({ mark, subject, date, onSave, onClose }) {
           onChange={(e) => setLabel(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && onSave({ label, color })}
           placeholder="Etiqueta personalizada"
-          className="w-full bg-[#0b1226] border border-[#27365c] rounded-lg px-3 py-2 text-sm text-slate-100 mb-3 focus:outline-none focus:border-cyan-400"
+          className="w-full bg-[#101012] border border-[#2a2a2e] rounded-lg px-3 py-2 text-sm text-zinc-100 mb-3 focus:outline-none focus:border-zinc-400"
         />
 
-        <label className="block text-xs font-semibold text-slate-400 mb-1">Color</label>
+        <label className="block text-xs font-medium text-zinc-500 mb-1">Color</label>
         <div className="grid grid-cols-8 gap-1.5 mb-4">
           {Object.entries(COLORS).map(([key, c]) => (
             <button
               key={key}
               title={c.label}
               onClick={() => setColor(key)}
-              className={`h-7 rounded border ${
-                color === key ? 'ring-2 ring-cyan-400 border-cyan-400' : 'border-[#27365c]'
+              className={`h-7 rounded-md border ${
+                color === key ? 'ring-2 ring-white border-white' : 'border-[#2a2a2e]'
               }`}
               style={{ backgroundColor: c.bg }}
             />
@@ -269,7 +269,7 @@ function MarkEditor({ mark, subject, date, onSave, onClose }) {
         <div className="flex gap-2">
           <button
             onClick={() => onSave({ label, color })}
-            className="flex-1 bg-gradient-to-r from-cyan-500 to-violet-600 text-white rounded-lg py-2 text-sm font-bold hover:opacity-90"
+            className="flex-1 bg-white text-black rounded-lg py-2 text-sm font-semibold hover:bg-zinc-200 transition-colors"
           >
             Guardar
           </button>

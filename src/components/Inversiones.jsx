@@ -27,12 +27,16 @@ import {
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, ArcElement, Tooltip, Legend, Filler)
 
-// Tarjetas integradas al tema futurista global
+// Tarjetas integradas al tema monocromático global
 const T = {
   card: 'glass rounded-2xl',
-  sub: 'text-slate-500',
-  cardTitle: 'text-sm font-semibold text-slate-300',
+  sub: 'text-zinc-500',
+  cardTitle: 'text-sm font-semibold text-zinc-200',
 }
+
+// Escala de grises para los gráficos (estilo monocromático: el 1° más claro)
+const MONO = ['#fafafa', '#d8d8dc', '#b4b4ba', '#92929a', '#74747c', '#5b5b63', '#46464e', '#36363d', '#2a2a30']
+const monoColor = (i) => MONO[Math.min(i, MONO.length - 1)]
 
 const TIME_FILTERS = [
   { label: '3M', months: 3 },
@@ -108,7 +112,7 @@ export default function Inversiones() {
     return {
       labels: [...top.map((x) => x.c), ...(others > 0 ? ['Otros'] : [])],
       values: [...top.map((x) => x.v), ...(others > 0 ? [others] : [])],
-      colors: [...top.map((x) => coinColor(x.c)), '#8b949e'],
+      colors: [...top.map((_, i) => monoColor(i)), '#232328'],
     }
   }, [prices])
 
@@ -135,7 +139,7 @@ export default function Inversiones() {
           </div>
           <button
             onClick={fetchLivePrices}
-            className="flex items-center gap-2 px-3.5 py-2 rounded-lg border border-[#30363d] text-[#8b949e] text-sm font-semibold hover:border-[#58a6ff] hover:text-[#58a6ff]"
+            className="flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#2a2a2e] text-zinc-400 text-sm font-semibold hover:border-zinc-500 hover:text-white transition-colors"
           >
             <RefreshCw size={14} /> Actualizar precios
           </button>
@@ -157,15 +161,15 @@ export default function Inversiones() {
       <div className={`${T.card} p-5 mb-4`}>
         <div className="flex items-center justify-between flex-wrap gap-2 mb-4">
           <div className={T.cardTitle}>Evolución del Capital Invertido</div>
-          <div className="flex gap-1.5">
+          <div className="flex gap-1 bg-[#101012] border border-[#232328] rounded-full p-1">
             {TIME_FILTERS.map((f) => (
               <button
                 key={f.label}
                 onClick={() => setMonths(f.months)}
-                className={`px-3 py-1 rounded-full text-[13px] font-semibold border transition-colors ${
+                className={`px-3 py-1 rounded-full text-[13px] font-semibold transition-colors ${
                   months === f.months
-                    ? 'bg-[#58a6ff] border-[#58a6ff] text-[#0d1117]'
-                    : 'border-[#30363d] text-[#8b949e] hover:border-[#58a6ff] hover:text-[#58a6ff]'
+                    ? 'bg-[#2e2e33] text-white'
+                    : 'text-zinc-500 hover:text-zinc-200'
                 }`}
               >
                 {f.label}
@@ -197,8 +201,8 @@ export default function Inversiones() {
                 tooltip: { callbacks: { label: (ctx) => ' $' + formatNum(ctx.raw) } },
               },
               scales: {
-                x: { grid: { color: '#21262d' }, ticks: { color: '#8b949e', maxTicksLimit: 8 } },
-                y: { grid: { color: '#21262d' }, ticks: { color: '#8b949e', callback: (v) => '$' + formatNum(v) } },
+                x: { grid: { color: '#1e1e22' }, ticks: { color: '#71717a', maxTicksLimit: 8 } },
+                y: { grid: { color: '#1e1e22' }, ticks: { color: '#71717a', callback: (v) => '$' + formatNum(v) } },
               },
             }}
           />
@@ -217,7 +221,7 @@ export default function Inversiones() {
                   datasets: [{
                     data: allocation.values,
                     backgroundColor: allocation.colors,
-                    borderColor: '#0d1117',
+                    borderColor: '#151517',
                     borderWidth: 2,
                   }],
                 }}
@@ -243,8 +247,8 @@ export default function Inversiones() {
               {allocation.labels.map((l, i) => {
                 const pct = allocationTotal > 0 ? ((allocation.values[i] / allocationTotal) * 100).toFixed(1) : '0'
                 return (
-                  <div key={l} className="flex items-center gap-2 py-1.5 border-b border-[#21262d] last:border-0">
-                    <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: allocation.colors[i] }} />
+                  <div key={l} className="flex items-center gap-2 py-1.5 border-b border-[#1e1e22] last:border-0">
+                    <span className="w-2.5 h-2.5 rounded-[3px] shrink-0" style={{ backgroundColor: allocation.colors[i] }} />
                     <span className="flex-1 text-[13px] font-semibold">{l}</span>
                     <span className="text-[13px] font-bold w-12 text-right">{pct}%</span>
                     <span className={`text-xs ${T.sub} w-[70px] text-right`}>
@@ -265,8 +269,8 @@ export default function Inversiones() {
                 labels: topAssets.map((x) => x.c),
                 datasets: [{
                   data: topAssets.map((x) => x.v),
-                  backgroundColor: topAssets.map((x) => coinColor(x.c)),
-                  borderRadius: 4,
+                  backgroundColor: topAssets.map((_, i) => monoColor(i)),
+                  borderRadius: 6,
                 }],
               }}
               options={{
@@ -277,8 +281,8 @@ export default function Inversiones() {
                   tooltip: { callbacks: { label: (ctx) => ' $' + formatNum(ctx.raw) } },
                 },
                 scales: {
-                  x: { grid: { display: false }, ticks: { color: '#8b949e' } },
-                  y: { grid: { color: '#21262d' }, ticks: { color: '#8b949e', callback: (v) => '$' + formatNum(v) } },
+                  x: { grid: { display: false }, ticks: { color: '#71717a' } },
+                  y: { grid: { color: '#1e1e22' }, ticks: { color: '#71717a', callback: (v) => '$' + formatNum(v) } },
                 },
               }}
             />
@@ -299,7 +303,7 @@ export default function Inversiones() {
                 {['Activo', 'Cantidad', 'Precio (USD)', 'Valor (USD)'].map((h, i) => (
                   <th
                     key={h}
-                    className={`text-xs ${T.sub} font-medium px-2.5 py-2 border-b border-[#30363d] ${i === 0 ? 'text-left' : 'text-right'}`}
+                    className={`text-xs ${T.sub} font-medium px-2.5 py-2 border-b border-[#232328] ${i === 0 ? 'text-left' : 'text-right'}`}
                   >
                     {h}
                   </th>
@@ -313,8 +317,8 @@ export default function Inversiones() {
                 const val = qty * price
                 const isStable = STABLES.includes(c)
                 return (
-                  <tr key={c} className="hover:bg-[#1c2128]">
-                    <td className="px-2.5 py-2 border-b border-[#21262d]">
+                  <tr key={c} className="hover:bg-[#1a1a1d]">
+                    <td className="px-2.5 py-2 border-b border-[#1e1e22]">
                       <div className="inline-flex items-center gap-1.5 font-bold text-sm">
                         <span
                           className="w-7 h-7 rounded-full inline-flex items-center justify-center text-[11px] font-bold text-white shrink-0"
@@ -332,19 +336,19 @@ export default function Inversiones() {
                         </span>
                       </div>
                     </td>
-                    <td className={`px-2.5 py-2 border-b border-[#21262d] text-right text-[13px] ${T.sub}`}>
+                    <td className={`px-2.5 py-2 border-b border-[#1e1e22] text-right text-[13px] ${T.sub}`}>
                       {formatQty(qty)}
                     </td>
-                    <td className="px-2.5 py-2 border-b border-[#21262d] text-right">
+                    <td className="px-2.5 py-2 border-b border-[#1e1e22] text-right">
                       <input
                         type="number"
                         step="any"
                         value={price}
                         onChange={(e) => setPrices((prev) => ({ ...prev, [c]: parseFloat(e.target.value) || 0 }))}
-                        className="bg-[#21262d] border border-[#30363d] rounded-md text-[#e6edf3] text-[13px] px-2 py-1 w-[110px] text-right focus:outline-none focus:border-[#58a6ff]"
+                        className="bg-[#101012] border border-[#2a2a2e] rounded-md text-zinc-100 text-[13px] px-2 py-1 w-[110px] text-right focus:outline-none focus:border-zinc-400"
                       />
                     </td>
-                    <td className="px-2.5 py-2 border-b border-[#21262d] text-right text-sm font-semibold">
+                    <td className="px-2.5 py-2 border-b border-[#1e1e22] text-right text-sm font-semibold">
                       {val > 0 ? '$' + formatNum(val) : '—'}
                     </td>
                   </tr>

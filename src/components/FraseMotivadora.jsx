@@ -15,16 +15,16 @@ export default function FraseMotivadora() {
   const quote = QUOTES[(dailyIndex() + offset) % QUOTES.length]
 
   return (
-    <div className="bg-white/[0.03] border-b border-violet-400/10 backdrop-blur">
+    <div className="border-b border-[#1f1f23]">
       <div className="max-w-[1600px] mx-auto px-4 py-2 flex items-center gap-2.5">
-        <Quote size={15} className="text-cyan-400 shrink-0" />
-        <p className="text-sm text-slate-300 italic font-medium flex-1">
+        <Quote size={14} className="text-zinc-500 shrink-0" />
+        <p className="text-sm text-zinc-400 italic font-medium flex-1">
           {quote}
         </p>
         <button
           onClick={() => setOffset((o) => o + 1)}
           title="Otra frase"
-          className="text-slate-500 hover:text-cyan-300 shrink-0 transition-colors"
+          className="text-zinc-600 hover:text-white shrink-0 transition-colors"
         >
           <RefreshCw size={14} />
         </button>
