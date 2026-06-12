@@ -22,7 +22,7 @@ export default function App() {
             <div className="p-1.5 rounded-lg bg-gradient-to-br from-cyan-500/20 to-violet-600/20 border border-cyan-400/30">
               <ClipboardList size={22} className="text-cyan-300" />
             </div>
-            <h1 className="font-display text-base font-bold neon-text uppercase">
+            <h1 className="text-xl font-bold neon-text">
               Organización de Julian
             </h1>
           </div>
@@ -31,7 +31,7 @@ export default function App() {
               <button
                 key={id}
                 onClick={() => setActive(id)}
-                className={`font-tech flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold uppercase tracking-wide transition-all ${
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
                   active === id
                     ? 'bg-gradient-to-r from-cyan-500 to-violet-600 text-white glow-cyan'
                     : 'text-slate-400 border border-slate-700/60 hover:border-cyan-400/40 hover:text-cyan-300'

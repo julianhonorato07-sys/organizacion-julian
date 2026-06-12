@@ -70,7 +70,7 @@ export default function Cronograma() {
         <div className="flex rounded-lg overflow-hidden border border-slate-700/80">
           <button
             onClick={() => setMode('teorico')}
-            className={`font-tech flex items-center gap-2 px-4 py-2 text-sm font-bold uppercase tracking-wide transition-all ${
+            className={`flex items-center gap-2 px-4 py-2 text-sm font-semibold transition-all ${
               isTeorico
                 ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white'
                 : 'bg-transparent text-slate-400 hover:bg-white/5'
@@ -80,7 +80,7 @@ export default function Cronograma() {
           </button>
           <button
             onClick={() => setMode('practico')}
-            className={`font-tech flex items-center gap-2 px-4 py-2 text-sm font-bold uppercase tracking-wide transition-all ${
+            className={`flex items-center gap-2 px-4 py-2 text-sm font-semibold transition-all ${
               !isTeorico
                 ? 'bg-gradient-to-r from-emerald-500 to-teal-600 text-white'
                 : 'bg-transparent text-slate-400 hover:bg-white/5'
@@ -111,18 +111,18 @@ export default function Cronograma() {
               <th className="w-20 border border-[#1c2a4a] bg-transparent"></th>
               <th
                 colSpan={DAYS.length}
-                className="font-display border border-[#1c2a4a] bg-gradient-to-r from-violet-600/70 via-blue-600/70 to-cyan-500/70 text-white text-sm font-bold py-2 tracking-widest uppercase"
+                className="border border-[#1c2a4a] bg-gradient-to-r from-violet-600/70 via-blue-600/70 to-cyan-500/70 text-white text-sm font-semibold py-2"
               >
                 Semana {week} · {range}
                 {!isTeorico && ' · (semana en curso)'}
               </th>
             </tr>
             <tr>
-              <th className="font-tech w-20 border border-[#1c2a4a] bg-[#0d1630] text-cyan-200/80 text-xs py-2 px-1 uppercase tracking-wide">
+              <th className="w-20 border border-[#1c2a4a] bg-[#0d1630] text-cyan-200/80 text-xs font-medium py-2 px-1">
                 Horas / Días
               </th>
               {DAYS.map(({ key, label }) => (
-                <th key={key} className="font-tech border border-[#1c2a4a] bg-[#0d1630] text-cyan-200/90 text-sm font-bold py-2">
+                <th key={key} className="border border-[#1c2a4a] bg-[#0d1630] text-cyan-200/90 text-sm font-semibold py-2">
                   {label}
                 </th>
               ))}
@@ -190,7 +190,7 @@ function CellEditor({ cell, dayLabel, hour, onSave, onDelete, onClose }) {
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between mb-3">
-          <h3 className="font-tech font-bold text-cyan-200 uppercase tracking-wide">
+          <h3 className="font-semibold text-slate-100">
             {dayLabel} — {hour}:00
           </h3>
           <button onClick={onClose} className="text-slate-500 hover:text-slate-200">

@@ -31,7 +31,7 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarEleme
 const T = {
   card: 'glass rounded-2xl',
   sub: 'text-slate-500',
-  cardTitle: 'font-tech text-xs font-bold text-cyan-200/80 uppercase tracking-wider',
+  cardTitle: 'text-sm font-semibold text-slate-300',
 }
 
 const TIME_FILTERS = [
@@ -299,7 +299,7 @@ export default function Inversiones() {
                 {['Activo', 'Cantidad', 'Precio (USD)', 'Valor (USD)'].map((h, i) => (
                   <th
                     key={h}
-                    className={`text-[11px] ${T.sub} uppercase tracking-wider font-semibold px-2.5 py-2 border-b border-[#30363d] ${i === 0 ? 'text-left' : 'text-right'}`}
+                    className={`text-xs ${T.sub} font-medium px-2.5 py-2 border-b border-[#30363d] ${i === 0 ? 'text-left' : 'text-right'}`}
                   >
                     {h}
                   </th>
@@ -361,7 +361,7 @@ export default function Inversiones() {
 function Meta({ label, value, color }) {
   return (
     <div className="flex flex-col gap-0.5">
-      <span className="text-[11px] text-[#8b949e] uppercase tracking-wide">{label}</span>
+      <span className="text-xs text-slate-500">{label}</span>
       <span className="text-base font-semibold" style={color ? { color } : undefined}>{value}</span>
     </div>
   )

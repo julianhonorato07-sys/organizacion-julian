@@ -18,7 +18,7 @@ export default function Universitario() {
           <button
             key={id}
             onClick={() => setTab(id)}
-            className={`font-tech flex items-center gap-2 px-4 py-2 text-sm font-bold uppercase tracking-wide rounded-lg border transition-all ${
+            className={`flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-lg border transition-all ${
               tab === id
                 ? 'bg-cyan-500/10 border-cyan-400/40 text-cyan-300'
                 : 'border-slate-700/60 text-slate-500 hover:text-slate-300 hover:border-slate-500'

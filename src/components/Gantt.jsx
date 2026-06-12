@@ -89,7 +89,7 @@ export default function Gantt() {
   return (
     <div className="glass rounded-2xl p-4">
       <div className="flex flex-wrap items-center gap-3 mb-4">
-        <h2 className="font-tech font-bold text-cyan-200 uppercase tracking-wide">Materias / Objetivos</h2>
+        <h2 className="font-semibold text-slate-100">Materias / Objetivos</h2>
         <button
           onClick={addSubject}
           className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-slate-400 border border-slate-700/80 rounded-lg hover:border-cyan-400/40 hover:text-cyan-300 transition-colors"
@@ -111,10 +111,10 @@ export default function Gantt() {
         <table className="border-collapse text-sm">
           <thead className="sticky top-0 z-20">
             <tr>
-              <th className="font-tech sticky left-0 z-30 bg-[#0d1630] text-cyan-200/90 border border-[#1c2a4a] px-3 py-2 min-w-[230px] text-left uppercase tracking-wide">
+              <th className="sticky left-0 z-30 bg-[#0d1630] text-cyan-200/90 border border-[#1c2a4a] px-3 py-2 min-w-[230px] text-left text-sm font-semibold">
                 Materias / Objetivos
               </th>
-              <th className="font-tech sticky left-[230px] z-30 bg-[#0d1630] text-cyan-200/90 border border-[#1c2a4a] px-2 py-2 min-w-[90px] uppercase tracking-wide">
+              <th className="sticky left-[230px] z-30 bg-[#0d1630] text-cyan-200/90 border border-[#1c2a4a] px-2 py-2 min-w-[90px] text-sm font-semibold">
                 Notas
               </th>
               {dates.map((d) => (
@@ -219,7 +219,7 @@ function MarkEditor({ mark, subject, date, onSave, onClose }) {
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between mb-3">
-          <h3 className="font-tech font-bold text-cyan-200 text-sm uppercase tracking-wide">
+          <h3 className="font-semibold text-slate-100 text-sm">
             {subject?.name} — {date}
           </h3>
           <button onClick={onClose} className="text-slate-500 hover:text-slate-200">

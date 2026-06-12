@@ -52,7 +52,7 @@ function AreaBoard({ area, tasks, onChange }) {
         style={{ background: `linear-gradient(135deg, ${area.accent}cc, ${area.accent}44)` }}
       >
         <div>
-          <h2 className="font-tech font-bold leading-tight uppercase tracking-wide">{area.name}</h2>
+          <h2 className="font-bold leading-tight">{area.name}</h2>
           <p className="text-xs opacity-90 flex items-center gap-1">
             <User size={12} /> Reporta: {area.boss}
           </p>

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
 body {
@@ -16,14 +16,11 @@ body {
   background-attachment: fixed;
 }
 
-/* Tipografías del tema */
-.font-display {
-  font-family: 'Orbitron', sans-serif;
-  letter-spacing: 0.06em;
-}
+/* Tipografía única y limpia (estilo dashboard moderno) */
+.font-display,
 .font-tech {
-  font-family: 'Rajdhani', sans-serif;
-  letter-spacing: 0.02em;
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: normal;
 }
 
 /* Panel de vidrio (glassmorphism) */
